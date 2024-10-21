@@ -30,9 +30,14 @@
     git reset --hard
     ```
 
-2. Atualize o repositório com as últimas alterações:
+2. Restaure o estado original do repositório:
     ```bash
-    git pull
+    git clean -fd
+    ```
+
+3. Atualize o repositório com as últimas alterações:
+    ```bash
+    git pull origin main --allow-unrelated-histories
     ```
 
 
