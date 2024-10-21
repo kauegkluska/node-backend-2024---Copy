@@ -10,6 +10,9 @@ app.set("port", process.env.PORT || config.get("server.port"));
 // Seto a template engine
 app.set("view engine", "hbs");
 
+// middleware do Express que é usado para fazer o parsing dos dados enviados pelo cliente através de formulários HTML
+app.use(express.urlencoded({ extended: false }));
+
 
 app.use(express.static("./public"));
 // Utilizo um arquivo externo para definir as rotas WEB
