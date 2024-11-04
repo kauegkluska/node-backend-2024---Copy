@@ -1,4 +1,4 @@
-const DataBase = require("../database/DataBase");
+const DataBase = require("../config/DataBase");
 
 class ProdutoModel {
     /** 
@@ -92,7 +92,7 @@ class ProdutoModel {
      */
     static async findAllWithTipoProdutoDescricao() {
         const result = await DataBase.executeSQLQuery(`SELECT Produto.*,
-                                                              TipoProduto.descricao
+                                                              TipoProduto.descricao as TipoProduto_descricao
                                                        FROM Produto
                                                        JOIN TipoProduto ON Produto.TipoProduto_id = TipoProduto.id
                                                        ORDER BY Produto.id`);

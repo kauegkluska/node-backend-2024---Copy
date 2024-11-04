@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const DataBase = require("../config/DataBase");
 const TipoProdutoModel = require("../models/TipoProdutoModel");
+const ProdutoModel = require("../models/ProdutoModel");
 
 router.get("/", (request, response) => {
     response.render("index");
@@ -12,11 +13,7 @@ router.get("/recurso", (request, response) => {
 });
 
 router.get("/produto", async (request, response) => {
-    const produtos = await DataBase.executeSQLQuery(`SELECT Produto.*,
-                                                            TipoProduto.descricao as TipoProduto_descricao
-                                                    FROM Produto
-                                                    JOIN TipoProduto ON Produto.TipoProduto_id = TipoProduto.id`);
-    //response.send({ produtos: produtos });
+    const produtos = ProdutoModel.findAllWithTipoProdutoDescricao();
     response.render("Produto/index", { produtos: produtos });
 });
 
@@ -62,8 +59,6 @@ router.post("/tipoproduto", async (request, response) => {
     const tipoProduto = new TipoProdutoModel();
     tipoProduto.descricao = request.body.descricao;
     const result = await tipoProduto.save();
-    console.log(tipoProduto);
-    console.log(result);
     response.redirect("/tipoproduto");
 });
 
