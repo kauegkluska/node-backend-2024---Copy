@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const DataBase = require("../config/DataBase");
+const TipoProdutoModel = require("../models/TipoProdutoModel");
 
 router.get("/", (request, response) => {
     response.render("index");
@@ -49,7 +50,7 @@ router.post("/produto", async (request, response) => {
 
 
 router.get("/tipoproduto", async (request, response) => {
-    const tipoProdutos = await DataBase.executeSQLQuery("SELECT * FROM TipoProduto");
+    const tipoProdutos = await TipoProdutoModel.findAll();
     response.render("TipoProduto/index", { tipoProdutos: tipoProdutos });
 });
 
