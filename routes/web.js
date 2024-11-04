@@ -59,17 +59,11 @@ router.get("/tipoproduto/create", async (request, response) => {
 });
 
 router.post("/tipoproduto", async (request, response) => {
-    const descricao = request.body.descricao;
-    const timestamp = (new Date()).toISOString().slice(0, 19).replace('T', ' ');
-    const dataAtualizacao = timestamp;
-    const dataCriacao = timestamp;
-    const result = await DataBase.executeSQLQuery(`INSERT INTO TipoProduto VALUES(null, ?, ?, ?)`,
-        [
-            descricao,
-            dataAtualizacao,
-            dataCriacao
-        ]
-    );
+    const tipoProduto = new TipoProdutoModel();
+    tipoProduto.descricao = request.body.descricao;
+    const result = await tipoProduto.save();
+    console.log(tipoProduto);
+    console.log(result);
     response.redirect("/tipoproduto");
 });
 
