@@ -13,7 +13,7 @@ router.get("/recurso", (request, response) => {
 });
 
 router.get("/produto", async (request, response) => {
-    const produtos = ProdutoModel.findAllWithTipoProdutoDescricao();
+    const produtos = await ProdutoModel.findAllWithTipoProdutoDescricao();
     response.render("Produto/index", { produtos: produtos });
 });
 
