@@ -70,6 +70,7 @@ class TipoProdutoModel {
                 timestamp
             ]
         );
+        console.log(result);
         const tipoProduto = await DataBase.executeSQLQuery(`SELECT * FROM TipoProduto WHERE TipoProduto.id = ?`, [result.insertId]);
         return new TipoProdutoModel(tipoProduto[0]);
     }
