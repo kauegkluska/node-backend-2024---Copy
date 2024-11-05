@@ -91,8 +91,8 @@ class TipoProdutoModel {
                 this.id
             ]
         );
-        const tipoProduto = await DataBase.executeSQLQuery(`SELECT * FROM TipoProduto WHERE TipoProduto.id = ?`, [this.id]);
-        return new TipoProdutoModel(tipoProduto[0]);
+        const tipoProduto = await TipoProdutoModel.findOne(this.id);
+        return tipoProduto;
     }
 
     /**

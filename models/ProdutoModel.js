@@ -42,7 +42,7 @@ class ProdutoModel {
 
     /**
      * Busca um objeto ProdutoModel no banco de dados
-     * @param  {Number}         id      ID do produdo a ser procurado no banco de dados.
+     * @param  {Number}         id      ID do produto a ser procurado no banco de dados.
      * @return {ProdutoModel}           Retorna um objeto ProdutoModel com as informações encontradas, caso não encontre, retorna null.
      */
     static async findOne(id) {
@@ -54,7 +54,7 @@ class ProdutoModel {
 
     /**
      * Busca um objeto simples Produto no banco de dados, adicionando ao resultado a coluna "descricao" da tabela "TipoProduto".
-     * @param  {Number}     id     ID do produdo a ser procurado no banco de dados.
+     * @param  {Number}     id     ID do produto a ser procurado no banco de dados.
      * @return {Produto}           Retorna um objeto simples Produto com as informações encontradas, adicionando ao resultado a coluna "descricao" da tabela "TipoProduto", caso não encontre, retorna null.
      */
     static async findOneWithTipoProdutoDescricao(id) {
@@ -119,9 +119,8 @@ class ProdutoModel {
                 timestamp
             ]
         );
-        const produto = await DataBase.executeSQLQuery(`SELECT * FROM Produto WHERE Produto.id = ?`, [result.insertId]);
-        //console.log(result);
-        return new ProdutoModel(produto[0]);
+        const produto = await ProdutoModel.findOne(result.insertId);
+        return produto;
     }
 
     /**
@@ -149,9 +148,8 @@ class ProdutoModel {
                 this.id,
             ]
         );
-        const produto = await DataBase.executeSQLQuery(`SELECT * FROM Produto WHERE Produto.id = ?`, [this.id]);
-        //console.log(result);
-        return new ProdutoModel(produto[0]);
+        const produto = await ProdutoModel.findOne(this.id);
+        return produto;
     }
 
     /**
