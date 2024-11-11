@@ -7,7 +7,8 @@ class WebTipoProdutoController {
     * @param {*} res Resposta da rota do express
     */
     async index(req, res) {
-        res.send("index de tipoproduto");
+        const tipoProdutos = await TipoProdutoModel.findAll();
+        return res.render("TipoProduto/index", { tipoProdutos: tipoProdutos });
     }
 
     /**
@@ -16,16 +17,19 @@ class WebTipoProdutoController {
     * @param {*} res Resposta da rota do express
     */
     async create(req, res) {
-
+        return res.render("TipoProduto/create");
     }
+
     /**
     * Salva um novo recurso no banco de dados
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
     */
     async store(req, res) {
-
+        const tipoProduto = new TipoProdutoModel();
+        return res.send(tipoProduto);
     }
+    
     /**
     * Mostra um recurso específico
     * @param {*} req Requisição da rota do express
