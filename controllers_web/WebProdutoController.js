@@ -9,7 +9,7 @@ class WebProdutoController {
     */
     async index(req, res) {
         const produtos = ProdutoModel.findAllWithTipoProdutoDescricao();
-        return redirect.send(produtos);
+        return res.send(produtos);
         return res.render("Produto/index", {produtos: produtos});
     }
 
