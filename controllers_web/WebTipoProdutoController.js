@@ -27,9 +27,11 @@ class WebTipoProdutoController {
     */
     async store(req, res) {
         const tipoProduto = new TipoProdutoModel();
-        return res.send(tipoProduto);
+        tipoProduto.descricao = req.body.descricao;
+        const result = await tipoProduto.save();
+        return res.redirect("/tipoproduto");
     }
-    
+
     /**
     * Mostra um recurso específico
     * @param {*} req Requisição da rota do express

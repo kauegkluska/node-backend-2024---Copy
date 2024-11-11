@@ -8,6 +8,9 @@ class WebProdutoController {
     * @param {*} res Resposta da rota do express
     */
     async index(req, res) {
+        const produtos = ProdutoModel.findAllWithTipoProdutoDescricao();
+        return redirect.send(produtos);
+        return res.render("Produto/index", {produtos: produtos});
     }
 
     /**
