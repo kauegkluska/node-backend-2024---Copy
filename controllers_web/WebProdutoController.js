@@ -28,6 +28,14 @@ class WebProdutoController {
     * @param {*} res Resposta da rota do express
     */
     async store(req, res) {
+        const produto = new ProdutoModel();
+        produto.numero = req.body.numero;
+        produto.nome = req.body.nome;
+        produto.preco = req.body.preco;
+        produto.TipoProduto_id = req.body.TipoProduto_id;
+        produto.ingredientes = req.body.ingredientes;
+        const result = await produto.save();
+        return res.redirect("/produto");
     }
 
     /**
