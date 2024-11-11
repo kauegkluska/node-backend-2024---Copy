@@ -9,7 +9,6 @@ class WebProdutoController {
     */
     async index(req, res) {
         const produtos = await ProdutoModel.findAllWithTipoProdutoDescricao();
-        return res.send(produtos);
         return res.render("Produto/index", {produtos: produtos});
     }
 
@@ -19,6 +18,8 @@ class WebProdutoController {
     * @param {*} res Resposta da rota do express
     */
     async create(req, res) {
+        const tipoProdutos = await TipoProdutoModel.findAll();
+        return res.render("Produto/create", {tipoProdutos: tipoProdutos});
     }
 
     /**
