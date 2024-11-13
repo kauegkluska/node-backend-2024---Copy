@@ -7,7 +7,7 @@
     git clone https://github.com/leobravoe/node-backend-2024.git
     ```
 
-2. Copie o arquivo de configuração padrão:
+2. Copie e renomeie o arquivo de configuração padrão:
     ```bash
     copy '.\config\default.json example' '.\config\default.json'
     ```
@@ -15,10 +15,14 @@
 3. Atualize as dependências:
     ```bash
     npm update --save
-    npm update -d
     ```
 
-4. Inicie o projeto em ambiente de desenvolvimento:
+4. Atualize as dependências:
+    ```bash
+    npm update -D
+    ```
+
+5. Inicie o projeto em ambiente de desenvolvimento:
     ```bash
     npm run dev
     ```
