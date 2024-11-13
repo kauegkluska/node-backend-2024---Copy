@@ -29,28 +29,22 @@ class DataBase {
     static async executeSQLFile(filePath) {
         const connection = await mysql2.createConnection({
             host: config.get("db.host"),
-            database: config.get("db.database"),
             user: config.get("db.user"),
             password: config.get("db.password")
         });
-        try {
-            // Lê o conteúdo do arquivo SQL
-            const sql = await fs.readFile(filePath, 'utf8');
-            // Divide o SQL em comandos individuais, caso haja múltiplos
-            const commands = sql.split(';').map(cmd => cmd.trim());
 
-            for (const command of commands) {
-                if (command) {
-                    // Usa query em vez de execute para comandos como USE
-                    await connection.query(command);
-                }
+        // Lê o conteúdo do arquivo SQL
+        const sql = await fs.readFile(filePath, 'utf8');
+        // Divide o SQL em comandos individuais e apaga espaços em branco do início e fim
+        const commands = sql.split(';').map(cmd => cmd.trim());
+
+        for (const command of commands) {
+            if (command) {
+                await connection.query(command);
             }
-            console.log('Script SQL executado com sucesso.');
-        } catch (error) {
-            console.error('Erro ao executar o arquivo SQL:', error);
-        } finally {
-            connection.end();
         }
+        console.log('Script SQL executado com sucesso.');
+        connection.end();
     }
 };
 
