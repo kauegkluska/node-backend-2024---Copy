@@ -23,11 +23,11 @@ router.delete("/produto/:produtoId", webProdutoController.destroy);
 
 // Demais rotas ainda sem controlador (iremos criar um controlador para essas rotas no futuro)
 router.get("/recurso", async (request, response) => {
-    response.render("Recurso/index");
+    response.render("Recurso/index", {layout: "Layouts/main", title: "Recursos"});
 });
 
 router.get("/", async (request, response) => {
-    response.render("index");
+    response.render("index", {layout: "Layouts/main", title: "Página inicial"});
 });
 
 module.exports = router;

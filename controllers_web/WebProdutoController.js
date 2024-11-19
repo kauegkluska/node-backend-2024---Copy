@@ -19,7 +19,7 @@ class WebProdutoController {
     */
     async create(req, res) {
         const tipoProdutos = await TipoProdutoModel.findAll();
-        return res.render("Produto/create", { tipoProdutos: tipoProdutos });
+        return res.render("Produto/create", { layout: "Layouts/main", title: "Create de Produto", tipoProdutos: tipoProdutos });
     }
 
     /**
