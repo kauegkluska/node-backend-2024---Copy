@@ -35,6 +35,7 @@
             response = await fetch(`/produto/${id}`, {
                 method: "DELETE"
             });
+            //console.log(response);
             if (response.redirected) {
                 window.location.href = response.url;
             }
