@@ -46,7 +46,7 @@ class WebProdutoController {
     .produtoId Parâmetro passado pela rota do express
     */
     async show(req, res) {
-
+        return res.send("show");
     }
 
     /**
@@ -78,7 +78,9 @@ class WebProdutoController {
     .produtoId Parâmetro passado pela rota do express
     */
     async destroy(req, res) {
+        // Tentar excluir o dado
 
+        return res.redirect(303, "/produto");
     }
 }
 module.exports = new WebProdutoController();
