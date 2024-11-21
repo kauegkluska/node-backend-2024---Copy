@@ -81,10 +81,9 @@ class WebProdutoController {
         // Tentar excluir o dado
         console.log(req.params.produtoId);
         const produto = await ProdutoModel.findOne(req.params.produtoId);
-        //console.log(produto);
-        // if(produto){
-        //     await produto.delete();
-        // }
+        if(produto){
+            await produto.delete();
+        }
         return res.redirect(303, "/produto");
     }
 }
