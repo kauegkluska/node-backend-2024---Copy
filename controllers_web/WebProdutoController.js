@@ -78,8 +78,6 @@ class WebProdutoController {
     .produtoId Parâmetro passado pela rota do express
     */
     async destroy(req, res) {
-        // Tentar excluir o dado
-        console.log(req.params.produtoId);
         const produto = await ProdutoModel.findOne(req.params.produtoId);
         if(produto){
             await produto.delete();
