@@ -1,22 +1,22 @@
 {
-  "name": "node-backend-2024",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "reset-database": "node .\\config\\reset-database.js"
-  },
-  "author": "Leonardo Bravo Estácio",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "config": "^3.3.12",
-    "express": "^4.21.1",
-    "hbs": "^4.2.0",
-    "mysql2": "^3.11.4"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.7"
-  }
+    "name": "node-backend-2024",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon index.js",
+        "reset-database": "node .\\config\\reset-database.js"
+    },
+    "author": "Leonardo Bravo Estácio",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "config": "^3.3.12",
+        "express": "^4.21.1",
+        "hbs": "^4.2.0",
+        "mysql2": "^3.11.4"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.7"
+    }
 }
