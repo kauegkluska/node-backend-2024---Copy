@@ -42,8 +42,7 @@ class WebProdutoController {
     * Mostra um recurso específico
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-    .produtoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
     */
     async show(req, res) {
         return res.send("show");
@@ -53,8 +52,7 @@ class WebProdutoController {
     * Mostra um formulário para editar um recurso específico
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-    .produtoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
     */
     async edit(req, res) {
 
@@ -64,8 +62,7 @@ class WebProdutoController {
     * Atualiza um recurso existente no banco de dados
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-    .produtoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
     */
     async update(req, res) {
 
@@ -75,8 +72,7 @@ class WebProdutoController {
     * Remove um recurso existente do banco de dados
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-    .produtoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
     */
     async destroy(req, res) {
         const produto = await ProdutoModel.findOne(req.params.produtoId);

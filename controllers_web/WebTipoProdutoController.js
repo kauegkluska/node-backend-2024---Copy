@@ -36,8 +36,7 @@ class WebTipoProdutoController {
     * Mostra um recurso específico
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-   .tipoProdutoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.tipoProdutoId Parâmetro passado pela rota do express
     */
     async show(req, res) {
 
@@ -47,8 +46,7 @@ class WebTipoProdutoController {
     * Mostra um formulário para editar um recurso específico
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-   .tipoProdutoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.tipoProdutoId Parâmetro passado pela rota do express
     */
     async edit(req, res) {
 
@@ -58,8 +56,7 @@ class WebTipoProdutoController {
     * Atualiza um recurso existente no banco de dados
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-   .tipoProdutoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.tipoProdutoId Parâmetro passado pela rota do express
     */
     async update(req, res) {
 
@@ -69,8 +66,7 @@ class WebTipoProdutoController {
     * Remove um recurso existente do banco de dados
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
-    * @param {Number} req.params
-   .tipoProdutoId Parâmetro passado pela rota do express
+    * @param {Number} req.params.tipoProdutoId Parâmetro passado pela rota do express
     */
     async destroy(req, res) {
 
