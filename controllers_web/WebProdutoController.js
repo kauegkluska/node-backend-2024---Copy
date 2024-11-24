@@ -59,6 +59,7 @@ class WebProdutoController {
     async edit(req, res) {
 
     }
+    
     /**
     * Atualiza um recurso existente no banco de dados
     * @param {*} req Requisição da rota do express

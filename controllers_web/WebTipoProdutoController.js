@@ -42,6 +42,7 @@ class WebTipoProdutoController {
     async show(req, res) {
 
     }
+
     /**
     * Mostra um formulário para editar um recurso específico
     * @param {*} req Requisição da rota do express
@@ -52,6 +53,7 @@ class WebTipoProdutoController {
     async edit(req, res) {
 
     }
+
     /**
     * Atualiza um recurso existente no banco de dados
     * @param {*} req Requisição da rota do express
@@ -62,6 +64,7 @@ class WebTipoProdutoController {
     async update(req, res) {
 
     }
+    
     /**
     * Remove um recurso existente do banco de dados
     * @param {*} req Requisição da rota do express
