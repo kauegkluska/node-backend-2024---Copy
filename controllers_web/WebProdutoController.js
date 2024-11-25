@@ -45,7 +45,8 @@ class WebProdutoController {
     * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
     */
     async show(req, res) {
-        return res.send("show");
+        const produto = await ProdutoModel.findOneWithTipoProdutoDescricao(req.params.produtoId);
+        return res.render("Produto/show", { layout: "Layouts/main", title: "Show de Produto", produto: produto });
     }
 
     /**
@@ -55,9 +56,11 @@ class WebProdutoController {
     * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
     */
     async edit(req, res) {
-
+        const produto = await ProdutoModel.findOne(req.params.produtoId);
+        const tipoProdutos = await TipoProdutoModel.findAll();
+        return res.render("Produto/edit", { layout: "Layouts/main", title: "Edit de Produto", tipoProdutos: tipoProdutos, produto: produto });
     }
-    
+
     /**
     * Atualiza um recurso existente no banco de dados
     * @param {*} req Requisição da rota do express
@@ -65,7 +68,16 @@ class WebProdutoController {
     * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
     */
     async update(req, res) {
-
+        const produto = await ProdutoModel.findOne(req.params.produtoId);
+        if (produto) {
+            produto.numero = req.body.numero;
+            produto.nome = req.body.nome;
+            produto.preco = req.body.preco;
+            produto.TipoProduto_id = req.body.TipoProduto_id;
+            produto.ingredientes = req.body.ingredientes;
+            const result = await produto.update();
+        }
+        res.redirect("/produto");
     }
 
     /**
@@ -76,7 +88,7 @@ class WebProdutoController {
     */
     async destroy(req, res) {
         const produto = await ProdutoModel.findOne(req.params.produtoId);
-        if(produto){
+        if (produto) {
             await produto.delete();
         }
         return res.redirect(303, "/produto");
