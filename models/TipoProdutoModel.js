@@ -82,9 +82,9 @@ class TipoProdutoModel {
         // Gera um timestamp no formato "YYYY-MM-DD HH:MM:SS" com a data e horário atual
         const timestamp = (new Date()).toISOString().slice(0, 19).replace('T', ' ');
         const result = await DataBase.executeSQLQuery(`UPDATE TipoProduto
-                                                           SET descricao = ?,
-                                                               dataAtualizacao = ?
-                                                           WHERE TipoProduto.id = ?`,
+                                                       SET descricao = ?,
+                                                           dataAtualizacao = ?
+                                                       WHERE TipoProduto.id = ?`,
             [
                 this.descricao,
                 timestamp,
