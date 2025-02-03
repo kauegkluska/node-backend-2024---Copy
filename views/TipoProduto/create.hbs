@@ -1,17 +1,17 @@
-    <div class="container">
-        <form method="POST" action="/tipoproduto">
-            <div class="my-3">
-                <label for="id-input-id" class="form-label">ID</label>
-                <input type="text" id="id-input-id" class="form-control" value="#" disabled>
-            </div>
-            <div class="my-3">
-                <label for="id-input-descricao" class="form-label">Descrição</label>
-                <input type="text" name="descricao" id="id-input-descricao" class="form-control"
-                    placeholder="Digite a descricao do tipo de produto. Ex: Pizza" required>
-            </div>
-            <div class="my-3">
-                <button type="submit" class="btn btn-outline-primary">Enviar</button>
-                <a href="/tipoproduto" class="btn btn-outline-primary">Voltar</a>
-            </div>
-        </form>
-    </div>
+{{!-- Create de TipoProduto --}}
+
+<div class="container">
+    <form method="post" action="/tipoproduto">
+        <div class="mb-3">
+            <label for="id-input-id" class="form-label">ID</label>
+            <input type="text" class="form-control" id="id-input-id" value="#" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="id-input-descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="id-input-descricao"
+                placeholder="Digite a descrição para o TipoProduto. Ex: Pizza" name="descricao" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/tipoproduto" class="btn btn-primary">Voltar</a>
+    </form>
+</div>

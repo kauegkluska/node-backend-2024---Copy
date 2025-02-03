@@ -25,13 +25,13 @@
             <label for="id-select-TipoProduto_id" class="form-label">Tipo</label>
             <select name="TipoProduto_id" id="id-select-TipoProduto_id" class="form-select">
                 {{#each tipoProdutos}}
-                    {{!-- Se o tipo do objeto que estemos editando, for igual ao id do objeto --}}
-                    {{!-- que estamos imprimindo no option, ele deve ser marcado como selected --}}
-                    {{#if (igual ../produto.TipoProduto_id this.id) }}
-                        <option value="{{this.id}}" selected>{{this.descricao}}</option>
-                    {{else}}
-                        <option value="{{this.id}}">{{this.descricao}}</option>
-                    {{/if}}
+                {{!-- Se o tipo do objeto que estemos editando, for igual ao id do objeto --}}
+                {{!-- que estamos imprimindo no option, ele deve ser marcado como selected --}}
+                {{#if (igual ../produto.TipoProduto_id this.id) }}
+                <option value="{{this.id}}" selected>{{this.descricao}}</option>
+                {{else}}
+                <option value="{{this.id}}">{{this.descricao}}</option>
+                {{/if}}
                 {{/each}}
             </select>
         </div>

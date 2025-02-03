@@ -26,11 +26,13 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
 // Configura o method-override no express para poder usar put ou delete nos <form> do HTML
 app.use(methodOverride("_method"));
 // Middleware - Utilizo um arquivo externo para definir as rotas WEB
 app.use(webRoutes);
 // Middleware - Utilizo um arquivo externo para definir as rotas API
 app.use(apiRoutes);
+
 // exporta o objeto app configurado
 module.exports = app;

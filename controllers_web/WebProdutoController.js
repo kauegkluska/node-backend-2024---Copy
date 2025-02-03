@@ -2,11 +2,6 @@ const ProdutoModel = require("../models/ProdutoModel");
 const TipoProdutoModel = require("../models/TipoProdutoModel");
 
 class WebProdutoController {
-    /**
-    * Mostra uma tela com todos os recursos
-    * @param {*} req Requisição da rota do express
-    * @param {*} res Resposta da rota do express
-    */
     /** 
     * Mostra uma tela com todos os recursos 
     * @param {*} req Requisição da rota do express 
@@ -34,8 +29,8 @@ class WebProdutoController {
             return res.render("Produto/create", { layout: "Layouts/main", title: "Create de Produto", tipoProdutos: tipoProdutos });
         } catch (error) {
             req.session.message = ["danger", JSON.stringify(error)];
-            return res.redirect("/produto");
         }
+        return res.redirect("/produto");
     }
 
     /** 
@@ -147,4 +142,5 @@ class WebProdutoController {
     }
 
 }
+
 module.exports = new WebProdutoController();
