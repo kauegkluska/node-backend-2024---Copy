@@ -7,36 +7,58 @@ class WebProdutoController {
     * @param {*} req Requisição da rota do express
     * @param {*} res Resposta da rota do express
     */
+    /** 
+    * Mostra uma tela com todos os recursos 
+    * @param {*} req Requisição da rota do express 
+    * @param {*} res Resposta da rota do express 
+    */
     async index(req, res) {
-        const produtos = await ProdutoModel.findAllWithTipoProdutoDescricao();
-        return res.render("Produto/index", { layout: "Layouts/main", title: "Index de Produto", produtos: produtos });
+        try {
+            const message = req.session.message ? req.session.message : null;
+            if (message) delete req.session.message;
+            const produtos = await ProdutoModel.findAllWithTipoProdutoDescricao();
+            return res.render("Produto/index", { layout: "Layouts/main", title: "Index de Produto", produtos: produtos, message: message });
+        } catch (error) {
+            return res.render("Produto/index", { layout: "Layouts/main", title: "Index de Produto", produtos: [], message: ["danger", JSON.stringify(error)] });
+        }
     }
 
-    /**
-    * Mostra um formulário para criação de um novo recurso
-    * @param {*} req Requisição da rota do express
-    * @param {*} res Resposta da rota do express
+    /** 
+    * Mostra um formulário para criação de um novo recurso 
+    * @param {*} req Requisição da rota do express 
+    * @param {*} res Resposta da rota do express 
     */
     async create(req, res) {
-        const tipoProdutos = await TipoProdutoModel.findAll();
-        return res.render("Produto/create", { layout: "Layouts/main", title: "Create de Produto", tipoProdutos: tipoProdutos });
+        try {
+            const tipoProdutos = await TipoProdutoModel.findAll();
+            return res.render("Produto/create", { layout: "Layouts/main", title: "Create de Produto", tipoProdutos: tipoProdutos });
+        } catch (error) {
+            req.session.message = ["danger", JSON.stringify(error)];
+            return res.redirect("/produto");
+        }
     }
 
-    /**
-    * Salva um novo recurso no banco de dados
-    * @param {*} req Requisição da rota do express
-    * @param {*} res Resposta da rota do express
-    */
+    /** 
+   * Salva um novo recurso no banco de dados 
+   * @param {*} req Requisição da rota do express 
+   * @param {*} res Resposta da rota do express 
+   */
     async store(req, res) {
-        const produto = new ProdutoModel();
-        produto.numero = req.body.numero;
-        produto.nome = req.body.nome;
-        produto.preco = req.body.preco;
-        produto.TipoProduto_id = req.body.TipoProduto_id;
-        produto.ingredientes = req.body.ingredientes;
-        const result = await produto.save();
+        try {
+            const produto = new ProdutoModel();
+            produto.numero = req.body.numero;
+            produto.nome = req.body.nome;
+            produto.preco = req.body.preco;
+            produto.TipoProduto_id = req.body.TipoProduto_id;
+            produto.ingredientes = req.body.ingredientes;
+            const result = await produto.save();
+            req.session.message = ["success", `Produto ${result.id}-${result.nome} salvo com sucesso.`];
+        } catch (error) {
+            req.session.message = ["danger", JSON.stringify(error)];
+        }
         return res.redirect("/produto");
     }
+
 
     /**
     * Mostra um recurso específico
