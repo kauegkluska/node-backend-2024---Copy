@@ -79,49 +79,72 @@ class WebProdutoController {
         return res.redirect("/produto");
     }
 
-    /**
-    * Mostra um formulário para editar um recurso específico
-    * @param {*} req Requisição da rota do express
-    * @param {*} res Resposta da rota do express
-    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
-    */
+    /** 
+   * Mostra um formulário para editar um recurso específico 
+   * @param {*} req Requisição da rota do express 
+   * @param {*} res Resposta da rota do express 
+   * @param {Number} req.params.produtoId Parâmetro passado pela rota do express 
+   */
     async edit(req, res) {
-        const produto = await ProdutoModel.findOne(req.params.produtoId);
-        const tipoProdutos = await TipoProdutoModel.findAll();
-        return res.render("Produto/edit", { layout: "Layouts/main", title: "Edit de Produto", tipoProdutos: tipoProdutos, produto: produto });
+        try {
+            const produto = await ProdutoModel.findOne(req.params.produtoId);
+            const tipoProdutos = await TipoProdutoModel.findAll();
+            if (produto) {
+                return res.render("Produto/edit", { layout: "Layouts/main", title: "Edit de Produto", produto: produto, tipoProdutos: tipoProdutos });
+            }
+            req.session.message = ["warning", "Produto não encontrado."];
+        } catch (error) {
+            req.session.message = ["danger", JSON.stringify(error)];
+        }
+        return res.redirect("/produto");
     }
 
-    /**
-    * Atualiza um recurso existente no banco de dados
-    * @param {*} req Requisição da rota do express
-    * @param {*} res Resposta da rota do express
-    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
-    */
+    /** 
+   * Atualiza um recurso existente no banco de dados 
+   * @param {*} req Requisição da rota do express 
+   * @param {*} res Resposta da rota do express 
+   * @param {Number} req.params.produtoId Parâmetro passado pela rota do express 
+   */
     async update(req, res) {
-        const produto = await ProdutoModel.findOne(req.params.produtoId);
-        if (produto) {
+        try {
+            const produto = await ProdutoModel.findOne(req.params.produtoId);
+            if (!produto) {
+                req.session.message = ["warning", "Produto não encontrado."];
+                return res.redirect("/produto");
+            }
             produto.numero = req.body.numero;
             produto.nome = req.body.nome;
             produto.preco = req.body.preco;
             produto.TipoProduto_id = req.body.TipoProduto_id;
             produto.ingredientes = req.body.ingredientes;
             const result = await produto.update();
+            req.session.message = ["success", `Produto ${result.id}-${result.nome} editado com sucesso.`];
+        } catch (error) {
+            req.session.message = ["danger", JSON.stringify(error)];
         }
-        res.redirect("/produto");
+        return res.redirect("/produto");
     }
 
-    /**
-    * Remove um recurso existente do banco de dados
-    * @param {*} req Requisição da rota do express
-    * @param {*} res Resposta da rota do express
-    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
-    */
+    /** 
+   * Remove um recurso existente do banco de dados 
+   * @param {*} req Requisição da rota do express 
+   * @param {*} res Resposta da rota do express 
+   * @param {Number} req.params.produtoId Parâmetro passado pela rota do express 
+   */
     async destroy(req, res) {
-        const produto = await ProdutoModel.findOne(req.params.produtoId);
-        if (produto) {
-            await produto.delete();
+        try {
+            const produto = await ProdutoModel.findOne(req.params.produtoId);
+            if (!produto) {
+                req.session.message = ["warning", "Produto não encontrado."];
+                return res.redirect("/produto");
+            }
+            const result = await produto.delete();
+            req.session.message = ["success", `Produto ${result.id}-${result.nome} removido com sucesso.`];
+        } catch (error) {
+            req.session.message = ["danger", JSON.stringify(error)];
         }
-        return res.redirect(303, "/produto");
+        return res.redirect("/produto");
     }
+
 }
 module.exports = new WebProdutoController();
