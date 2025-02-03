@@ -22,7 +22,12 @@
     npm update -D
     ```
 
-5. Inicie o projeto em ambiente de desenvolvimento:
+5. Ligue o XAMPP e execute o programa para criar a base de dados:
+    ```bash
+    npm run reset-database
+    ```
+
+6. Inicie o projeto em ambiente de desenvolvimento:
     ```bash
     npm run dev
     ```
