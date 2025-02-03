@@ -123,7 +123,7 @@ class WebTipoProdutoController {
                 return res.redirect("/tipoproduto");
             }
             const result = await tipoProduto.delete();
-            req.session.message = ["success", `TipoProduto ${result.id}-${result.nome} removido com sucesso.`];
+            req.session.message = ["success", `TipoProduto ${result.id}-${result.descricao} removido com sucesso.`];
         } catch (error) {
             req.session.message = ["danger", JSON.stringify(error)];
         }
