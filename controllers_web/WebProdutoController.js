@@ -60,15 +60,23 @@ class WebProdutoController {
     }
 
 
-    /**
-    * Mostra um recurso específico
-    * @param {*} req Requisição da rota do express
-    * @param {*} res Resposta da rota do express
-    * @param {Number} req.params.produtoId Parâmetro passado pela rota do express
-    */
+    /** 
+   * Mostra um recurso específico 
+   * @param {*} req Requisição da rota do express 
+   * @param {*} res Resposta da rota do express 
+   * @param {Number} req.params.produtoId Parâmetro passado pela rota do express 
+   */
     async show(req, res) {
-        const produto = await ProdutoModel.findOneWithTipoProdutoDescricao(req.params.produtoId);
-        return res.render("Produto/show", { layout: "Layouts/main", title: "Show de Produto", produto: produto });
+        try {
+            const produto = await ProdutoModel.findOneWithTipoProdutoDescricao(req.params.produtoId);
+            if (produto) {
+                return res.render("Produto/show", { layout: "Layouts/main", title: "Show de Produto", produto: produto });
+            }
+            req.session.message = ["warning", "Produto não encontrado."];
+        } catch (error) {
+            req.session.message = ["danger", JSON.stringify(error)];
+        }
+        return res.redirect("/produto");
     }
 
     /**
