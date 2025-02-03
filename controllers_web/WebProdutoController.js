@@ -56,7 +56,7 @@ class WebProdutoController {
         } catch (error) {
             req.session.message = ["danger", JSON.stringify(error)];
         }
-        return res.redirect("/produto");
+        return res.redirect(`/produto?message`);
     }
 
 
