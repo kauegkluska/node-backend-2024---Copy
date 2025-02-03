@@ -1,8 +1,8 @@
-const DataBase = require('../config/DataBase');
+const DataBase = require('../database/DataBase');
 
 (async () => {
     try {
-        await DataBase.executeSQLFile('sqlbanco.sql');
+        await DataBase.executeSQLFile('database/sqlbanco.sql');
     } catch (error) {
         console.error('Erro ao executar o arquivo SQL:', error);
     }

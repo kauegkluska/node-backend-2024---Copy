@@ -1,13 +1,13 @@
 // O objetivo desse arquivo é configurar o express
-const HbsConfigureCustomHelpers = require("./HbsConfigureCustomHelpers");
 const Crypto = require("crypto");
+const HbsConfigureCustomHelpers = require("../hbs_config/HbsConfigureCustomHelpers");
 const express = require("express");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const config = require("config");
-const app = express();
 const webRoutes = require("../routes/web");
 const apiRoutes = require("../routes/api");
+const app = express();
 
 // Seto a propriedade port dentro do objeto app
 app.set("port", process.env.PORT || config.get("server.port"));

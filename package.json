@@ -5,7 +5,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon index.js",
-        "reset-database": "node .\\config\\reset-database.js"
+        "reset-database": "node .\\commands\\reset-database.js"
     },
     "author": "Leonardo Bravo Estácio",
     "license": "ISC",

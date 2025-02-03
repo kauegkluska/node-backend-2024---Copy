@@ -1,4 +1,4 @@
-const DataBase = require("../config/DataBase");
+const DataBase = require("../database/DataBase");
 
 class ProdutoModel {
     /** 

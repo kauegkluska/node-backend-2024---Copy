@@ -1,6 +1,7 @@
 const express = require("express");
 const webProdutoController = require("../controllers_web/WebProdutoController");
 const webTipoProdutoController = require("../controllers_web/WebTipoProdutoController");
+const webMesaController = require("../controllers_web/WebMesaController");
 const router = express.Router();
 
 // Rotas de TipoProduto
@@ -20,6 +21,15 @@ router.get("/produto/:produtoId", webProdutoController.show);
 router.get("/produto/:produtoId/edit", webProdutoController.edit);
 router.put("/produto/:produtoId", webProdutoController.update);
 router.delete("/produto/:produtoId", webProdutoController.destroy);
+
+// Rotas de Mesa
+router.get("/mesa", webMesaController.index);
+router.get("/mesa/create", webMesaController.create);
+router.post("/mesa", webMesaController.store);
+router.get("/mesa/:mesaId", webMesaController.show);
+router.get("/mesa/:mesaId/edit", webMesaController.edit);
+router.put("/mesa/:mesaId", webMesaController.update);
+router.delete("/mesa/:mesaId", webMesaController.destroy);
 
 // Demais rotas ainda sem controlador (iremos criar um controlador para essas rotas no futuro)
 router.get("/recurso", async (request, response) => {
