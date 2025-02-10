@@ -1,5 +1,6 @@
 <div class="container">
     <form method="POST" action="/produto">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <div class="my-3">
             <label for="id-input-id" class="form-label">ID</label>
             <input type="text" id="id-input-id" class="form-control" value="#" disabled>

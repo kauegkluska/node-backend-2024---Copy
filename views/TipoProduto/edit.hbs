@@ -2,6 +2,7 @@
 
 <div class="container">
     <form method="post" action="/tipoproduto/{{tipoProduto.id}}?_method=put">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <div class="my-3">
             <label for="id-input-id" class="form-label">ID</label>
             <input type="text" id="id-input-id" value="{{tipoProduto.id}}" class="form-control" disabled>
