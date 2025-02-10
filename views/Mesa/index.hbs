@@ -19,17 +19,17 @@
                 <th scope="row">{{this.id}}</th>
                 <td>{{this.numero}}</td>
                 {{#if (igual this.estado 'A') }}
-                    <td>Aberta</td>
+                <td>Aberta</td>
                 {{else}}
-                    {{#if (igual this.estado 'O') }}
-                        <td>Ocupada</td>
-                    {{else}}
-                        {{#if (igual this.estado 'R') }}
-                            <td>Reservada</td>
-                        {{else}}
-                            <td>Indefinido</td>
-                        {{/if}}
-                    {{/if}}
+                {{#if (igual this.estado 'O') }}
+                <td>Ocupada</td>
+                {{else}}
+                {{#if (igual this.estado 'R') }}
+                <td>Reservada</td>
+                {{else}}
+                <td>Indefinido</td>
+                {{/if}}
+                {{/if}}
                 {{/if}}
                 <td>
                     <a href="/mesa/{{this.id}}" class="btn btn-primary">Mostrar</a>
@@ -47,7 +47,10 @@
         if (confirm(`Deseja remover o recurso de id = ${id}`)) {
             console.log(`Deve remover o recurso de id = ${id}`);
             const response = await fetch(`/mesa/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "X-CSRF-Token": "{{csrfToken}}"
+                }
             });
             if (response.redirected) {
                 window.location.href = response.url;

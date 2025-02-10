@@ -33,7 +33,10 @@
     async function deleteResource(id) {
         if (confirm("Deseja realmente remover?")) {
             response = await fetch(`/produto/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "X-CSRF-Token": "{{csrfToken}}"
+                }
             });
             if (response.redirected) {
                 window.location.href = response.url;

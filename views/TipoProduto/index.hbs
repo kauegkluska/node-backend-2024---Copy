@@ -33,7 +33,10 @@
         if (confirm(`Deseja remover o recurso de id = ${id}`)) {
             console.log(`Deve remover o recurso de id = ${id}`);
             const response = await fetch(`/tipoproduto/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "X-CSRF-Token": "{{csrfToken}}"
+                }
             });
             if(response.redirected){
                 window.location.href = response.url;
