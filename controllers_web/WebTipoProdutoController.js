@@ -11,7 +11,7 @@ class WebTipoProdutoController {
             const message = req.session.message ? req.session.message : null;
             if (message) delete req.session.message;
             const tipoProdutos = await TipoProdutoModel.findAll();
-            return res.render("TipoProduto/index", { layout: "Layouts/main", title: "Index de TipoProduto", tipoProdutos: tipoProdutos, message: message });
+            return res.render("TipoProduto/index", { layout: "Layouts/main", title: "Index de TipoProduto", tipoProdutos: tipoProdutos, message: message, csrfToken: req.csrfToken() });
         } catch (error) {
             return res.render("TipoProduto/index", { layout: "Layouts/main", title: "Index de TipoProduto", tipoProdutos: [], message: ["danger", JSON.stringify(error)] });
         }
@@ -24,7 +24,7 @@ class WebTipoProdutoController {
     */
     async create(req, res) {
         try {
-            return res.render("TipoProduto/create", { layout: "Layouts/main", title: "Create de TipoProduto" });
+            return res.render("TipoProduto/create", { layout: "Layouts/main", title: "Create de TipoProduto", csrfToken: req.csrfToken() });
         } catch (error) {
             req.session.message = ["danger", JSON.stringify(error)];
         }
@@ -78,7 +78,7 @@ class WebTipoProdutoController {
         try {
             const tipoProduto = await TipoProdutoModel.findOne(req.params.tipoProdutoId);
             if (tipoProduto) {
-                return res.render("TipoProduto/edit", { layout: "Layouts/main", title: "Show de TipoProduto", tipoProduto: tipoProduto });
+                return res.render("TipoProduto/edit", { layout: "Layouts/main", title: "Show de TipoProduto", tipoProduto: tipoProduto, csrfToken: req.csrfToken() });
             }
             req.session.message = ["warning", "TipoProduto não encontrado."];
         } catch (error) {

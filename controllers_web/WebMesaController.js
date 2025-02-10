@@ -11,7 +11,9 @@ class WebMesaController {
             const message = req.session.message ? req.session.message : null;
             if (message) delete req.session.message;
             const mesas = await MesaModel.findAll();
-            return res.render("Mesa/index", { layout: "Layouts/main", title: "Index de Mesa", mesas: mesas, message: message });
+            return res.render("Mesa/index", {
+                layout: "Layouts/main", title: "Index de Mesa", mesas: mesas, message: message, csrfToken: req.csrfToken()
+            });
         } catch (error) {
             return res.render("Mesa/index", { layout: "Layouts/main", title: "Index de Mesa", mesas: [], message: ["danger", JSON.stringify(error)] });
         }
@@ -24,7 +26,7 @@ class WebMesaController {
     */
     async create(req, res) {
         try {
-            return res.render("Mesa/create", { layout: "Layouts/main", title: "Create de Mesa" });
+            return res.render("Mesa/create", { layout: "Layouts/main", title: "Create de Mesa", csrfToken: req.csrfToken() });
         } catch (error) {
             req.session.message = ["danger", JSON.stringify(error)];
         }
@@ -79,7 +81,7 @@ class WebMesaController {
         try {
             const mesa = await MesaModel.findOne(req.params.mesaId);
             if (mesa) {
-                return res.render("Mesa/edit", { layout: "Layouts/main", title: "Show de Mesa", mesa: mesa });
+                return res.render("Mesa/edit", { layout: "Layouts/main", title: "Show de Mesa", mesa: mesa, csrfToken: req.csrfToken() });
             }
             req.session.message = ["warning", "Mesa não encontrada."];
         } catch (error) {
