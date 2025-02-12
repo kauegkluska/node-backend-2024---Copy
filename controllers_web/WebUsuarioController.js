@@ -52,14 +52,14 @@ class WebUsuarioController {
 
 
             if (!nome || !email || !senha) {
-                req.session.message = ["warning", "Todos os campos são obrigatórios."];
-                return res.redirect("/usuario/create");
+                req.session.message = ["warning", "Todos os campos são obrigatórios para cadastrar um usuário."];
+                return res.redirect("/usuario");
             }
 
             const usuarioExistente = await UsuarioModel.findOneByEmail(email);
             if (usuarioExistente) {
                 req.session.message = ["warning", "E-mail já cadastrado."];
-                return res.redirect("/usuario/create");
+                return res.redirect("/usuario");
             }
 
             const usuario = new UsuarioModel();
