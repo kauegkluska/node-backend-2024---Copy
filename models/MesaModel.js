@@ -32,7 +32,7 @@ class MesaModel {
 
     /**
      * Busca um objeto MesaModel no banco de dados
-     * @param  {Number}               id      ID do tipoProdudo a ser procurado no banco de dados.
+     * @param  {Number}        id      ID da mesa a ser procurada no banco de dados.
      * @return {MesaModel}             Retorna um objeto MesaModel com as informações encontradas, caso não encontre, retorna null.
      */
     static async findOne(id) {
