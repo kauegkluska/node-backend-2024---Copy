@@ -26,6 +26,8 @@ app.use(express.static("./public"));
 app.use(methodOverride("_method"));
 // Middleware - Configura o middeware para fazer o parse no corpo da requisição e identificar dados no formato JSON
 app.use(express.json());
+// Middleware - Utilizo um arquivo externo para definir as rotas API
+app.use(apiRoutes);
 
 // Middleware - Session
 app.use(session({
@@ -33,9 +35,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-
-// Middleware - Utilizo um arquivo externo para definir as rotas API
-app.use(apiRoutes);
 // Middleware - Configura o middleware do csrf
 app.use(csurf());
 // Middleware - Utilizo um arquivo externo para definir as rotas WEB
